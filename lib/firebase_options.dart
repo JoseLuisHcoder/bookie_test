@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -30,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -45,6 +39,15 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDWfT4pZfv15PRSZxMxAsvv2GRaUfOVFGs',
+    appId: '1:165946365384:web:4a9ce65e4d77a39fec9cfd',
+    messagingSenderId: '165946365384',
+    projectId: 'bookietest-75f8c',
+    authDomain: 'bookietest-75f8c.firebaseapp.com',
+    storageBucket: 'bookietest-75f8c.firebasestorage.app',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDypEx8vEzH8w_0iTMydlp0zR2hvcrXb8I',
@@ -70,5 +73,14 @@ class DefaultFirebaseOptions {
     projectId: 'bookietest-75f8c',
     storageBucket: 'bookietest-75f8c.firebasestorage.app',
     iosBundleId: 'com.example.bookieTest',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDWfT4pZfv15PRSZxMxAsvv2GRaUfOVFGs',
+    appId: '1:165946365384:web:5918faacd9ba8708ec9cfd',
+    messagingSenderId: '165946365384',
+    projectId: 'bookietest-75f8c',
+    authDomain: 'bookietest-75f8c.firebaseapp.com',
+    storageBucket: 'bookietest-75f8c.firebasestorage.app',
   );
 }
