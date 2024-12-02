@@ -65,6 +65,7 @@ class Login extends StatelessWidget {
                 height: 50,
               ),
               _signin(context),
+              _googleSignIn(context),
             ],
           ),
         ),
@@ -183,6 +184,27 @@ class Login extends StatelessWidget {
                     );
                   }),
           ])),
+    );
+  }
+
+  Widget _googleSignIn(BuildContext context) {
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+        ),
+        minimumSize: const Size(double.infinity, 60),
+        elevation: 0,
+      ),
+      onPressed: () async {
+        await AuthService().signInWithGoogle(context: context);
+      },
+      icon: Image.asset('assets/google_logo.png', height: 24), // Logo de Google
+      label: const Text(
+        "Sign in with Google",
+        style: TextStyle(color: Colors.black),
+      ),
     );
   }
 }

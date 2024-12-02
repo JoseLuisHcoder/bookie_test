@@ -9,6 +9,8 @@ class Signup extends StatelessWidget {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,16 @@ class Signup extends StatelessWidget {
                 ),
                 const SizedBox(
                   height: 80,
+                ),
+                // Llama al método para el campo de nombre completo
+                _fullNameField(),
+                const SizedBox(
+                  height: 20,
+                ),
+                // Llama al método para el campo de nombre de usuario
+                _usernameField(),
+                const SizedBox(
+                  height: 20,
                 ),
                 _emailAddress(),
                 const SizedBox(
@@ -130,6 +142,8 @@ class Signup extends StatelessWidget {
       ),
       onPressed: () async {
         await AuthService().signup(
+            fullName: _fullNameController.text,
+            username: _usernameController.text,
             email: _emailController.text,
             password: _passwordController.text,
             context: context);
@@ -165,6 +179,36 @@ class Signup extends StatelessWidget {
                     );
                   }),
           ])),
+    );
+  }
+
+  Widget _fullNameField() {
+    return TextField(
+      controller: _fullNameController,
+      decoration: InputDecoration(
+        filled: true,
+        hintText: 'Full Name',
+        fillColor: const Color(0xffF7F7F9),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(14),
+        ),
+      ),
+    );
+  }
+
+  Widget _usernameField() {
+    return TextField(
+      controller: _usernameController,
+      decoration: InputDecoration(
+        filled: true,
+        hintText: 'Username',
+        fillColor: const Color(0xffF7F7F9),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(14),
+        ),
+      ),
     );
   }
 }
